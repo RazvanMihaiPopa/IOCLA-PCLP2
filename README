@@ -1,0 +1,43 @@
+Tema 1 
+In main, am folosit fgets pentru citirea comenzilor, iar cand se introduce 
+comanda 'exit',  se opreste citirea. Folosesc strtok pentru a vedea primul
+cuvant din linie, pentru a putea stii ce functie se va folosi. 
+
+Daca primul cuvant din comanda este "insert", dau iar strtok, dau de tip 
+si verific ce tip este, iar pentru fiecare declar doua charuri pe care 
+le aloc dinamic cu strlen(nume)+1 deoarece vreau sa iau si terminatorul 
+de sir si declar si 2 inturi in functie de cel dorit. Apoi, le introduc
+in structura. Apelez functia add_last, in care verific daca nu am elemente,
+iar daca nu dau malloc cu sizeof(head)+data->header->len, intrucat in 
+data->header->len am retinut lungimea ocupata de data->data.
+Folosesc memcpy pentru a introduce in vectorul generic arr, la adresa
+arr aflandu-se tipul, la arr+sizeof(unsigned char) lungimea si la arr+
+sizeof(head) data. Daca se afla macar un element, dau realloc cu lungimea
+actuala + cea a elementului pe care vreau sa l introduc si procedez la fel
+ca in cazul in care nu am niciun element dar pornind de la adresa arr+lungime_arr.
+La final cresc lungimea vectorului.
+
+Daca primul cuvant e "insert_at", atunci introduc la fel ca la "insert" 
+in structura dar la primul strtok voi avea indexul la care trebuie sa introduc
+in vectorul arr. Daca indexul e mai mic decat zero, returnez -1. Daca este mai
+mare decat lungimea, apelez functia add_last deoarece trebuie introdus la sfarsit.
+Daca nu, parcurg pana la index si retin lungimea pana acolo, apoi retin lungimea
+de la index pana la sfarsit. Dau realloc cu lungimea totala si cea a elementului
+nou introdus, la adresa arr+total1(lungimea pana la index)+sizeof(head)+data->header->len
+(lungimea elementului pe care vrem sa-l introducem), punem ce urma dupa arr+total1.
+Apoi la adresa arr+total1, punem noul element. La final cresc lungimea vectorului.
+
+Pentru find, am parcurs vectorul pana la index si am retinut lungimea
+si cand ajung pe index, apelez functia print(vector+lungime, 1), luand 1
+ca lungime pentru a afisa doar elementul respectiv.
+
+Pentru delete, retin in total1 lungimea pana la index, in lenelim lungimea
+elementului eliminat, iar in total2 lungimea ramasa. Declar un vector nou
+pe care il aloc cu total1+total2 (lungimea totala-lungimea elementului eliminat),
+si copiez in el toate elementele din vector cu exceptia celui eliminat. La
+final eliberez memoria pentru arr, il aloc cu lungimea noului vector si
+copiez cu memcpy in arr noul vector, caruia ii voi elibera memoria dupa.
+La final scad din lungimea vectorului.
+
+Daca comanda primita este "print", voi printa tot vectorul tinand cont de tipul
+fiecarui element. 
